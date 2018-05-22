@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.eclipse.smarthome.core.thing.ChannelUID;
 import org.eclipse.smarthome.core.thing.Thing;
+import org.eclipse.smarthome.core.thing.ThingStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,7 +29,7 @@ public abstract class AbstractOmnilinkStatusHandler<T extends Status> extends Ab
     public void initialize() {
         Optional<T> status = retrieveStatus();
         handleStatus(status.orElse(null)); // handle status will process null.
-        super.initialize();
+        updateStatus(ThingStatus.ONLINE);
     }
 
     /**

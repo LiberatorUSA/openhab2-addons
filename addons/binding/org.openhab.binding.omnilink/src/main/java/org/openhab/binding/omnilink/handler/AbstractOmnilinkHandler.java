@@ -50,7 +50,7 @@ public abstract class AbstractOmnilinkHandler extends BaseThingHandler {
     public void bridgeStatusChanged(ThingStatusInfo bridgeStatusInfo) {
         super.bridgeStatusChanged(bridgeStatusInfo);
         if (bridgeStatusInfo.getStatus() == ThingStatus.ONLINE) {
-            initialize();
+            updateStatus(ThingStatus.ONLINE);
         }
     }
 
