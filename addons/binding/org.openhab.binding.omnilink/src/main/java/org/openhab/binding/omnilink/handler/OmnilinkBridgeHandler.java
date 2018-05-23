@@ -417,8 +417,11 @@ public class OmnilinkBridgeHandler extends BaseBridgeHandler implements Notifica
             logger.debug("received system status: {}", status);
             // let's update system time
             String dateString = new StringBuilder().append(2000 + status.getYear()).append("-")
-                    .append(status.getMonth()).append("-").append(status.getDay()).append("T").append(status.getHour())
-                    .append(":").append(status.getMinute()).append(":").append(status.getSecond()).toString();
+                    .append(String.format("%02d", status.getMonth())).append("-")
+                    .append(String.format("%02d", status.getDay())).append("T")
+                    .append(String.format("%02d", status.getHour())).append(":")
+                    .append(String.format("%02d", status.getMinute())).append(":")
+                    .append(String.format("%02d", status.getSecond())).toString();
             DateTimeType sysDateTime = new DateTimeType(dateString);
 
             updateState(OmnilinkBindingConstants.CHANNEL_SYSTEMDATE, new DateTimeType(dateString));
